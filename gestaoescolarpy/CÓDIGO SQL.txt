@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS gestao_escolar;
+USE gestao_escolar;
+
+-- Tabela para armazenar os usuários
+CREATE TABLE IF NOT EXISTS usuarios (
+    usuario VARCHAR(50) PRIMARY KEY,
+    senha VARCHAR(50) NOT NULL
+);
+
+-- Tabela para armazenar os alunos
+CREATE TABLE IF NOT EXISTS alunos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    matricula VARCHAR(50) UNIQUE NOT NULL,
+    turma VARCHAR(50) NOT NULL,
+    idade INT NOT NULL
+);
+
+-- Tabela para armazenar as notas dos alunos
+CREATE TABLE IF NOT EXISTS notas (
+    id_aluno INT,
+    disciplina VARCHAR(100) NOT NULL,
+    nota DECIMAL(5, 2) NOT NULL,
+    FOREIGN KEY (id_aluno) REFERENCES alunos(id)
+);
